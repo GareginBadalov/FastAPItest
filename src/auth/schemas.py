@@ -1,8 +1,8 @@
 import uuid
-from datetime import datetime
 from typing import List
 
 from fastapi_users import schemas
+from pydantic import BaseModel
 
 
 class UserRead(schemas.BaseUser[uuid.UUID]):
@@ -11,8 +11,7 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
 
 class UserCreate(schemas.BaseUserCreate):
     username: str
-    registered_at: datetime
 
 
-class UsersRead:
+class UsersRead(BaseModel):
     users: List[UserRead]

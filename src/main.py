@@ -29,5 +29,7 @@ app.include_router(
 app.include_router(
     router_users
 )
-# if __name__ == '__main__':
-#     uvicorn.run("src.main:app", host="localhost", log_level="info")
+
+
+if __name__ == '__main__':
+    uvicorn.run("src.main:app", host="localhost", log_level="info")

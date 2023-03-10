@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -17,7 +17,13 @@ async def get_specific_order(order_id: str, session: AsyncSession = Depends(get_
     query = select(Order).where(Order.id == order_id)
     result = await session.execute(query)
     result = result.scalar()
-    return OrderResponse(id=result.id, user_id=result.user_id, quantity=result.quantity, amount=result.amount, created_at=result.created_at)
+    return OrderResponse(
+        id=result.id,
+        user_id=result.user_id,
+        quantity=result.quantity,
+        amount=result.amount,
+        created_at=result.created_at
+    )
 
 
 @router.get("/")
@@ -56,5 +62,3 @@ async def add_specific_order(new_order: OrderCreate, session: AsyncSession = Dep
     await session.execute(stmt)
     await session.commit()
     return OrderResponse(**new_order.dict())
-
-

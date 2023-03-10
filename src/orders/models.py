@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import Column, String, TIMESTAMP, Boolean, Uuid, Integer, Float, ForeignKey
+from sqlalchemy import Column, TIMESTAMP, Uuid, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
 from src.database import Base
@@ -16,5 +16,3 @@ class Order(Base):
     amount = Column(Float)
     created_at = Column(TIMESTAMP, default=datetime.utcnow)
     user = relationship("User", back_populates="orders")
-
-

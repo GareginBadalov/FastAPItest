@@ -13,4 +13,3 @@ class User(SQLAlchemyBaseUserTableUUID, Base):
     username = Column(String, nullable=False)
     registered_at = Column(TIMESTAMP, default=datetime.utcnow)
     orders: Mapped[List[Order]] = relationship("Order", back_populates="user")
-
