@@ -27,7 +27,7 @@ async def get_specific_user(user_id: str, session: AsyncSession = Depends(get_as
 
 
 @router.get("/")
-async def get_specific_user(session: AsyncSession = Depends(get_async_session)):
+async def get_all_users(session: AsyncSession = Depends(get_async_session)):
     query = select(User)
     result = await session.execute(query)
     result = result.scalars().all()

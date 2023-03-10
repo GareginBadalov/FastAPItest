@@ -1,5 +1,16 @@
 version: '3.3'
 services:
+  web:
+    container_name: web
+    image: nginx:alpine
+    depends_on:
+      - app
+    ports:
+      - "8082:80"
+    volumes:
+      - ./src/conf.d:/etc/nginx/conf.d
+    networks:
+      - practice
   app:
     build:
       context: .
