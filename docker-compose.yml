@@ -12,7 +12,7 @@ services:
     networks:
       - practice
   app:
-    container_name: app
+    command: bash -c "alembic upgrade head"
     build:
       context: .
       dockerfile: Dockerfile
