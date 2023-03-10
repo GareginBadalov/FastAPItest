@@ -1,7 +1,7 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: help build up start down destroy stop restart logs logs-api ps login-timescale login-api db-shell
 build:
-	docker-compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yml build && docker exec -d app -it "alembic upgrade head"
 up:
 	docker-compose -f docker-compose.yml up -d
 start:
