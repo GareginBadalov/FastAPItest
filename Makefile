@@ -3,7 +3,7 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 build:
 	docker-compose -f docker-compose.yml build 
 up:
-	docker-compose -f docker-compose.yml up -d && docker exec -it  fastapitest-app-1 poetry run alembic upgrade head
+	docker-compose -f docker-compose.yml up -d && docker exec -it  fastapitest_app_1 poetry run alembic upgrade head
 start:
 	docker-compose -f docker-compose.yml start
 down:
