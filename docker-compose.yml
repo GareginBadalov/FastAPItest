@@ -12,7 +12,6 @@ services:
     networks:
       - practice
   app:
-    command: bash -c "alembic upgrade head"
     build:
       context: .
       dockerfile: Dockerfile
