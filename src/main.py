@@ -1,10 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.auth.base_config import auth_backend, fastapi_users
-from src.auth.schemas import UserRead, UserCreate
-from src.orders.router import router as router_orders
-from src.auth.router import router as router_users
+from src.core.auth import auth_backend, fastapi_users
+from src.schemas.user import UserRead, UserCreate
+from src.api.api_v1.api import api_router
 
 app = FastAPI(
     title="Test App"
@@ -23,11 +22,7 @@ app.include_router(
 )
 
 app.include_router(
-    router_orders
-)
-
-app.include_router(
-    router_users
+    api_router
 )
 
 

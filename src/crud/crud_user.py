@@ -3,9 +3,12 @@ from typing import Optional
 
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, UUIDIDMixin
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
-from src.auth.models import User
-from src.auth.utils import get_user_db
+from src.db.database import get_async_session
+from src.models.user import User
+from src.db.utils import get_user_db
 
 SECRET = "SECRET"
 
@@ -13,6 +16,12 @@ SECRET = "SECRET"
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET
     verification_token_secret = SECRET
+
+    async def get_all_users(self, session: AsyncSession = Depends(get_async_session)):
+        query = select(User)
+        result = await session.execute(query)
+        users = result.scalars().all()
+        return users
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")

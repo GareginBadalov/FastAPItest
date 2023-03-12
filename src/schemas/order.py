@@ -11,6 +11,11 @@ class OrderCreate(BaseModel):
     amount: int
 
 
+class OrderUpdate(BaseModel):
+    quantity: int
+    amount: int
+
+
 class OrderResponse(BaseModel):
     id: UUID4 = Field(default_factory=uuid4)
     user_id: UUID4
