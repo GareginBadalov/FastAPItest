@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, UUID4, Field
@@ -10,10 +10,17 @@ class OrderCreate(BaseModel):
     quantity: int
     amount: int
 
+    class Config:
+        orm_mode = True
+
 
 class OrderUpdate(BaseModel):
-    quantity: int
-    amount: int
+    user_id: Optional[UUID4]
+    quantity: Optional[int]
+    amount: Optional[int]
+
+    class Config:
+        orm_mode = True
 
 
 class OrderResponse(BaseModel):
@@ -23,6 +30,12 @@ class OrderResponse(BaseModel):
     amount: int
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
+    class Config:
+        orm_mode = True
+
 
 class UserOrdersResponse(BaseModel):
     orders: List[OrderResponse]
+
+    class Config:
+        orm_mode = True
