@@ -5,8 +5,8 @@ from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTableUUID
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.orm import relationship, Mapped
 
-from src.orders.models import Order
-from src.database import Base
+from src.models.order import Order
+from src.db.database import Base
 
 
 class User(SQLAlchemyBaseUserTableUUID, Base):

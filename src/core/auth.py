@@ -4,11 +4,11 @@ from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import BearerTransport, AuthenticationBackend
 from fastapi_users.authentication import JWTStrategy
 
-from src.auth.manager import get_user_manager
-from src.auth.models import User
+from src.crud.crud_user import get_user_manager
+from src.models.user import User
 from src.config import SECRET_AUTH
 
-bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
+bearer_transport = BearerTransport(tokenUrl="auth/login")
 
 
 def get_jwt_strategy() -> JWTStrategy:
@@ -27,3 +27,4 @@ fastapi_users = FastAPIUsers[User, uuid.UUID](
 )
 
 current_user = fastapi_users.current_user()
+current_active_verified_user = fastapi_users.current_user(active=True, verified=True)

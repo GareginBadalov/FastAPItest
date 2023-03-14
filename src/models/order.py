@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Column, TIMESTAMP, Uuid, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
-from src.database import Base
+from src.db.database import Base
 
 
 class Order(Base):

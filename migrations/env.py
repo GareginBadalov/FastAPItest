@@ -8,9 +8,7 @@ from alembic import context
 import os
 import sys
 
-from src.orders.models import Order
-from src.auth.models import User
-from src.database import Base
+from db.database import Base
 
 sys.path.append(os.path.join(sys.path[0], 'src'))
 
